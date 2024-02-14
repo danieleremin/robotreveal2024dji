@@ -1,0 +1,38 @@
+x = 1
+y = 5
+robot_ctrl.set_mode(rm_define.robot_mode_free)
+chassis_ctrl.set_rotate_speed(300)
+gimbal_ctrl.set_rotate_speed(300)
+chassis_ctrl.set_trans_speed(1)
+gimbal_ctrl.recenter
+def flash():
+    while x < 6:
+        led_ctrl.turn_off(rm_define.armor_top_all)
+        time.sleep(.4)
+        led_ctrl.set_top_led(rm_define.armor_top_all,204,64,0,rm_define.effect_marquee)
+        time.sleep(.275)
+        led_ctrl.turn_off(rm_define.armor_bottom_all)
+        time.sleep(.05)
+        led_ctrl.set_bottom_led(rm_define.armor_bottom_all,204,64,0,rm_define.effect_breath)
+        #gimbal_ctrl.set_follow_chassis_offset(-10)
+        time.sleep(.1)
+        for count in range(12):
+            #gimbal_ctrl.yaw_ctrl(-250)
+            gimbal_ctrl.rotate(rm_define.gimbal_left)
+            chassis_ctrl.move_with_time(0,.47)
+            chassis_ctrl.rotate_with_degree(rm_define.clockwise,99)
+            time.sleep(.1)
+            #media_ctrl.play_sound(rm_define.media_sound_solmization_2GSharp)
+            chassis_ctrl.move_with_time(-15,.5)
+            gimbal_ctrl.stop()
+            gimbal_ctrl.rotate(rm_define.gimbal_right)
+            chassis_ctrl.move_with_time(90,.623)
+            chassis_ctrl.rotate_with_degree(rm_define.anticlockwise,99)
+            time.sleep(.1)
+            gimbal_ctrl.stop()
+            chassis_ctrl.move_with_time(-88,.455)
+        
+flash()
+#def move():
+    #media_ctrl.play_sound(rm_define.media_sound_attacked)
+#move()
