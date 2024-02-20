@@ -1,0 +1,191 @@
+bpm=137
+robot_ctrl.set_mode(rm_define.robot_mode_free)
+chassis_ctrl.set_rotate_speed(bpm)        
+gimbal_ctrl.set_rotate_speed(bpm)
+wheel_degree=(90,180,-90,0)
+
+def light1():
+    led_ctrl.set_top_led(rm_define.armor_top_all,204,64,0,rm_define.effect_marquee)
+    led_ctrl.set_bottom_led(rm_define.armor_bottom_all,204,64,0,rm_define.effect_breathe)
+
+def step1():
+    robot_ctrl.set_mode(rm_define.robot_mode_gimbal_follow)
+    gimbal_ctrl.set_follow_chassis_offset(0)
+    chassis_ctrl.rotate_with_degree(rm_define.clockwise,360)
+    chassis_ctrl.rotate_with_degree(rm_define.anticlockwise,360)
+    robot_ctrl.set_mode(rm_define.robot_mode_free)
+
+def antiStep1():
+    robot_ctrl.set_mode(rm_define.robot_mode_gimbal_follow)
+    gimbal_ctrl.set_follow_chassis_offset(0)
+    chassis_ctrl.rotate_with_degree(rm_define.anticlockwise,360)
+    chassis_ctrl.rotate_with_degree(rm_define.clockwise,360)
+    robot_ctrl.set_mode(rm_define.robot_mode_free)
+
+def step2():
+    gimbal_ctrl.set_follow_chassis_offset(0)
+    chassis_ctrl.rotate_with_degree(rm_define.clockwise,360)
+    chassis_ctrl.rotate_with_degree(rm_define.anticlockwise,360)
+
+def antiStep2():
+    gimbal_ctrl.set_follow_chassis_offset(0)
+    chassis_ctrl.rotate_with_degree(rm_define.anticlockwise,360)
+    chassis_ctrl.rotate_with_degree(rm_define.clockwise,360)
+
+def step3():
+    chassis_ctrl.move_with_time(0,1)
+    chassis_ctrl.move_with_time(90,1)
+    chassis_ctrl.move_with_time(180,1)
+    chassis_ctrl.move_with_time(-90,1)
+
+def antiStep3():
+    chassis_ctrl.move_with_time(0,1)
+    chassis_ctrl.move_with_time(-90,1)
+    chassis_ctrl.move_with_time(180,1)
+    chassis_ctrl.move_with_time(90,1)
+
+def step4():
+    gimbal_ctrl.rotate_with_degree(rm_define.gimbal_up,30)
+    gimbal_ctrl.rotate_with_degree(rm_define.gimbal_down,35)
+    gimbal_ctrl.rotate_with_degree(rm_define.gimbal_right,35)
+    gimbal_ctrl.rotate_with_degree(rm_define.gimbal_left,70)
+    gimbal_ctrl.rotate_with_degree(rm_define.gimbal_right,35)
+    gimbal_ctrl.recenter()
+
+def antiStep4():
+    gimbal_ctrl.rotate_with_degree(rm_define.gimbal_up,30)
+    gimbal_ctrl.rotate_with_degree(rm_define.gimbal_down,35)
+    gimbal_ctrl.rotate_with_degree(rm_define.gimbal_left,35)
+    gimbal_ctrl.rotate_with_degree(rm_define.gimbal_right,70)
+    gimbal_ctrl.rotate_with_degree(rm_define.gimbal_left,35)
+    gimbal_ctrl.recenter()
+
+def step5():
+    for count in range(4):
+        gimbal_ctrl.rotate(rm_define.gimbal_left)
+        chassis_ctrl.rotate_with_degree(rm_define.clockwise,99)
+        time.sleep(.1)
+        gimbal_ctrl.stop()
+        gimbal_ctrl.rotate(rm_define.gimbal_right)
+        chassis_ctrl.rotate_with_degree(rm_define.anticlockwise,99)
+        time.sleep(.1)
+        gimbal_ctrl.stop()
+
+def step6():
+    gimbal_ctrl.rotate(rm_define.gimbal_left)
+    chassis_ctrl.move_with_time(0,.47)
+    chassis_ctrl.rotate_with_degree(rm_define.clockwise,99)
+    time.sleep(.1)
+    chassis_ctrl.move_with_time(-15,.5)
+    gimbal_ctrl.stop()
+    gimbal_ctrl.rotate(rm_define.gimbal_right)
+    chassis_ctrl.move_with_time(90,.623)
+    chassis_ctrl.rotate_with_degree(rm_define.anticlockwise,99)
+    time.sleep(.1)
+    gimbal_ctrl.stop()
+    chassis_ctrl.move_with_time(-88,.455)
+
+def step7():
+    robot_ctrl.set_mode(rm_define.robot_mode_free)
+    gimbal_ctrl.set_rotate_speed(bpm * 2)
+    chassis_ctrl.set_trans_speed(bpm/100*2)
+    gimbal_ctrl.recenter()
+    time.sleep(1)
+    for count in range(2):
+        gimbal_ctrl.rotate(rm_define.gimbal_up)
+        chassis_ctrl.move_with_time(45,.2)
+        gimbal_ctrl.stop()
+        gimbal_ctrl.rotate(rm_define.gimbal_down)
+        chassis_ctrl.move_with_time(135,.2)
+        gimbal_ctrl.stop()
+        time.sleep(.35)
+    for count in range(2):
+        gimbal_ctrl.rotate(rm_define.gimbal_up)
+        chassis_ctrl.move_with_time(-45,.2)
+        gimbal_ctrl.stop()
+        gimbal_ctrl.rotate(rm_define.gimbal_down)
+        chassis_ctrl.move_with_time(-135,.2)
+        gimbal_ctrl.stop()
+        time.sleep(.35)
+    for count in range(2):
+        gimbal_ctrl.rotate(rm_define.gimbal_up)
+        chassis_ctrl.move_with_time(45,.2)
+        gimbal_ctrl.stop()
+        gimbal_ctrl.rotate(rm_define.gimbal_down)
+        chassis_ctrl.move_with_time(135,.2)
+        gimbal_ctrl.stop()
+        time.sleep(.35)
+    for count in range(2):
+        gimbal_ctrl.rotate(rm_define.gimbal_up)
+        chassis_ctrl.move_with_time(-45,.2)
+        gimbal_ctrl.stop()
+        gimbal_ctrl.rotate(rm_define.gimbal_down)
+        chassis_ctrl.move_with_time(-135,.2)
+        gimbal_ctrl.stop()
+        time.sleep(.35)
+    for count in range(2):
+        gimbal_ctrl.rotate(rm_define.gimbal_up)
+        chassis_ctrl.move_with_time(45,.2)
+        gimbal_ctrl.stop()
+        gimbal_ctrl.rotate(rm_define.gimbal_down)
+        chassis_ctrl.move_with_time(135,.2)
+        gimbal_ctrl.stop()
+        time.sleep(.35)
+    for count in range(2):
+        gimbal_ctrl.rotate(rm_define.gimbal_up)
+        chassis_ctrl.move_with_time(-45,.2)
+        gimbal_ctrl.stop()
+        gimbal_ctrl.rotate(rm_define.gimbal_down)
+        chassis_ctrl.move_with_time(-135,.2)
+        gimbal_ctrl.stop()
+        time.sleep(.35)
+    for count in range(2):
+        gimbal_ctrl.rotate(rm_define.gimbal_up)
+        chassis_ctrl.move_with_time(45,.2)
+        gimbal_ctrl.stop()
+        gimbal_ctrl.rotate(rm_define.gimbal_down)
+        chassis_ctrl.move_with_time(135,.2)
+        gimbal_ctrl.stop()
+        time.sleep(.35)
+    for count in range(2):
+        gimbal_ctrl.rotate(rm_define.gimbal_up)
+        chassis_ctrl.move_with_time(-45,.2)
+        gimbal_ctrl.stop()
+        gimbal_ctrl.rotate(rm_define.gimbal_down)
+        chassis_ctrl.move_with_time(-135,.2)
+        gimbal_ctrl.stop()
+        time.sleep(.35)
+        #Unsynchronized movement
+        gimbal_ctrl.set_rotate_speed(500)
+        chassis_ctrl.set_trans_speed(3.5)
+        chassis_ctrl.rotate_with_time(rm_define.clockwise, 2)
+        chassis_ctrl.rotate_with_time(rm_define.anticlockwise, 2)
+        gimbal_ctrl.rotate_with_degree(rm_define.gimbal_up,55)
+        led_ctrl.gun_led_on()
+        for count in range(3):
+        chassis_ctrl.move_with_time(90,0.2)
+        chassis_ctrl.move_with_time(-90,0.2)
+        chassis_ctrl.stop()
+        led_ctrl.gun_led_off()
+        time.sleep(3.27)
+        chassis_ctrl.set_rotate_speed(600)
+        chassis_ctrl.rotate_with_time(rm_define.clockwise, 0.5)
+
+def finish():
+    gimbal_ctrl.recenter()
+    gimbal_ctrl.rotate_with_degree(rm_define.gimbal_up,50)
+    led_ctrl.gun_led_on
+    media_ctrl.play_sound(rm_define.media_sound_shoot)
+    led_ctrl.gun_led_off
+
+for count in range(1):
+    light1()
+    step1()
+    step2()
+    step3()
+    step4()
+    step5()
+    for count in range(2):
+        step6()
+    step7()
+    finish()
