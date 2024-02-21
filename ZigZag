@@ -1,4 +1,5 @@
 bpm = 137
+# shouldn't it be 157?
 robot_ctrl.set_mode(rm_define.robot_mode_free)
 gimbal_ctrl.set_rotate_speed(bpm * 2)
 chassis_ctrl.set_trans_speed(bpm/100*2)
@@ -70,3 +71,18 @@ for count in range(2):
     chassis_ctrl.move_with_time(-135,.2)
     gimbal_ctrl.stop()
 time.sleep(.35)
+# Unsynchronized movement
+gimbal_ctrl.set_rotate_speed(500)
+chassis_ctrl.set_trans_speed(3.5)
+chassis_ctrl.rotate_with_time(rm_define.clockwise, 2)
+chassis_ctrl.rotate_with_time(rm_define.anticlockwise, 2)
+gimbal_ctrl.rotate_with_degree(rm_define.gimbal_up,55)
+led_ctrl.gun_led_on()
+for count in range(3):
+    chassis_ctrl.move_with_time(90,0.2)
+    chassis_ctrl.move_with_time(-90,0.2)
+chassis_ctrl.stop()
+led_ctrl.gun_led_off()
+time.sleep(3.27)
+chassis_ctrl.set_rotate_speed(600)
+chassis_ctrl.rotate_with_time(rm_define.clockwise, 0.5)
