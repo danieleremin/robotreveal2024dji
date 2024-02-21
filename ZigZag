@@ -71,7 +71,7 @@ for count in range(2):
     chassis_ctrl.move_with_time(-135,.2)
     gimbal_ctrl.stop()
 time.sleep(.35)
-# Unsynchronized movement
+# added movement
 gimbal_ctrl.set_rotate_speed(500)
 chassis_ctrl.set_trans_speed(3.5)
 chassis_ctrl.rotate_with_time(rm_define.clockwise, 2)
